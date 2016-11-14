@@ -1,7 +1,7 @@
 # Fluid Keys
 
-[howler]:(https://github.com/goldfire/howler.js/)
-[lf]:(https://github.com/google/liquidfun)
+[howler]: https://github.com/goldfire/howler.js/
+[lf]: https://github.com/google/liquidfun
 
 ## Overview
 
@@ -65,3 +65,4 @@ GOAL: have the basics of the project working
 ## Bonus Features
 - [ ] record and play tracks
 - [ ] create several layers of tracks and combine them
+- [ ] upload and play audio files
