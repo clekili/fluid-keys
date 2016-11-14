@@ -15,8 +15,7 @@ Fluid Keys will enable users to:
 - [ ] See visual animations of the music they're playing
 - [ ] Select the preset of tones that can be played
 - [ ] Adjust viscosity of the liquid medium that generates animations
-- [ ] (bonus)Select color palette from provided few themes
-- [ ] (bonus)record and play tracks
+- [ ] Select color palette from provided few themes
 
 ## Wireframes
 This app will consist of a game screen, a top or bottom bar(dropdown) for displaying and selecting a color palette, a sidebar with options of recording songs and playing the recoded ones, and nav links to the Github, my LinkedIn.
@@ -62,3 +61,7 @@ GOAL: have the basics of the project working
   - Color palette dropdown
   - Sidebar
 * Add a nice recording
+
+## Bonus Features
+- [ ] record and play tracks
+- [ ] create several layers of tracks and combine them
