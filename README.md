@@ -1,15 +1,15 @@
-# Fluid Keys
+# Fluid Sounds
 
 [howler]: https://github.com/goldfire/howler.js/
 [lf]: https://github.com/google/liquidfun
 
 ## Overview
 
-Fluid Keys is a dynamic music app that maps the keys of the keyboard to different sounds and positions at the baseline of the application screen, every hit on a key triggers a wave on the screen. Waves can interact with each other and have different colors. The colors of waves fade out with time.
+Fluid Sounds is a dynamic music app that maps the keys of the keyboard to different sounds and positions at the baseline of the application screen, every hit on a key triggers a wave on the screen. Waves can interact with each other and have different colors. The colors of waves fade out with time.
 
 ## Functionality & MVP
 
-Fluid Keys will enable users to:
+Fluid Sounds will enable users to:
 
 - [ ] Play music
 - [ ] See visual animations of the music they're playing
@@ -24,7 +24,7 @@ This app will consist of a game screen, a top or bottom bar(dropdown) for displa
 
 ## Architecture and Technologies
 
-Fluid Keys will utilize the following technologies:
+Fluid Sounds will utilize the following technologies:
 
   * Vanilla JavaScript and `jquery` for overall structure and key mapping
   * [howler.js][howler] for playing pre-recorded sounds
@@ -38,7 +38,7 @@ player.js: this script will handle playing the audio tones
 
 visualizer.js: this script will handle rendering of tones using particles from LiquidFun library.
 
-fluid_keys.js: the main script of the app will connect the visualizer, player and other graphical components.
+fluid_sounds.js: the main script of the app will connect the visualizer, player and other graphical components.
 
 ## Implementation Timeline
 
