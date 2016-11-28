@@ -81,11 +81,10 @@ function advect(b, d, d0, u, v){
 }
 
 function project(u, v, p, div){
-    let h = -0.5 / N;
     for(let j = 1; j <= N; j++){
         for(let i = 1; i <= N; i++){
           let neighborSum = u[IX(i+1, j)] - u[IX(i-1, j)] + v[IX(i, j+1)] - v[IX(i, j-1)];
-          div[IX(i, j)] = h * neighborSum;
+          div[IX(i, j)] = -0.5 * neighborSum / N;
 
           p[IX(i, j)] = 0;
         }
