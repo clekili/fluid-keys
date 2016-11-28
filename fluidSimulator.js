@@ -20,8 +20,6 @@ class FluidSimulator {
     this.canvas = this.initCanvas();
     this.renderer = new FluidBoxRenderer(this.canvas, this.solver);
 
-    // setInterval(this.update.bind(this), 10);
-    // this.renderer.render();
   }
 
   update(){
