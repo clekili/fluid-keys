@@ -15,7 +15,7 @@ function IX(i, j){
 }
 
 function setBoundary(b, x){
-  for(let i = 1; i <= N; i++){
+  for(let i = 1; i <= N ; i++){
     x[IX(0, i)]    = b === 1 ? -x[IX(1, i)] : x[IX(1, i)];
     x[IX(N+1, i)]  = b === 1 ? -x[IX(N, i)] : x[IX(N, i)];
     x[IX(i, 0)]    = b === 2 ? -x[IX(i, 1)] : x[IX(i, 1)];
@@ -152,7 +152,11 @@ class FluidSolver {
     }
 
     getDensity(x, y){
-      return this.d[IX(x,y)];
+      return this.d[IX(x, y)];
+    }
+
+    setDensity(x, y, d){
+      this.d[IX(x, y)] = d;
     }
 
     update(){

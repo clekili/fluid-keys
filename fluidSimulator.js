@@ -12,6 +12,7 @@ class FluidSimulator {
     this.startPos = [0, 0];
     this.currentPos = [0, 0];
     this.mouseIsDown = false;
+    this.simulating = false;
 
     this.solver = new FluidSolver(resolution);
     this.solver.setUI(this.ui.bind(this));
@@ -19,7 +20,8 @@ class FluidSimulator {
     this.canvas = this.initCanvas();
     this.renderer = new FluidBoxRenderer(this.canvas, this.solver);
 
-    setInterval(this.update.bind(this), 10);
+    // setInterval(this.update.bind(this), 10);
+    // this.renderer.render();
   }
 
   update(){
@@ -41,6 +43,11 @@ class FluidSimulator {
     e.preventDefault();
     this.startPos = this.currentPos = this.getMousePos(e);
     this.mouseIsDown = true;
+
+    if(!this.simulating){
+      this.simulating = true;
+      setInterval(this.update.bind(this), 10);
+    }
   }
 
   mouseMoveHandler(e){

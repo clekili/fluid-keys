@@ -8,6 +8,32 @@ class FluidBoxRenderer {
     // set image data to alpha to 255
     for(let i = 3; i < this.imageData.data.length; i += 4)
       this.imageData.data[i] = 255;
+
+    this.densify();
+  }
+
+  densify(){
+    let ctx = this.canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.rect(0,0,200,200);
+    ctx.fillStyle = "black";
+    ctx.fill();
+    ctx.fillStyle = 'gray';
+    ctx.textAlign = 'center';
+    ctx.font="15px Verdana";
+    ctx.fillText('Click and Drag!', 100, 100);
+
+    let width = this.solver.width();
+    let height = this.solver.height();
+    let data = ctx.getImageData(0, 0, width, height).data;
+    for(let pixel = 0; pixel < data.length; pixel+=4){
+      if(data[pixel] !== 0){
+        let i = (pixel / 4) % width | 0;
+        let j = (pixel / 4) / width | 0;
+        this.solver.setDensity(i, j, 5);
+      }
+    }
+
   }
 
   render(){
