@@ -30,22 +30,22 @@ function setBoundary(b, x){
   return x;
 }
 
-function gaussSeidel(b, x, x0, a, c){
-  c = c || 1 + 4 * a;
+function gaussSeidel(b, x, x0, diff){
+  let a = dt * diff;
 
   for(let k = 0; k < iterations; k++){
     for(let i = 1; i <= N; i++){
       for(let j = 1; j <= N; j++){
         let neighborSum = x[IX(i-1, j)] + x[IX(i+1, j)] + x[IX(i, j-1)] + x[IX(i, j+1)];
-        x[IX(i, j)] = (x0[IX(i, j)] + a * neighborSum) / c;
+        x[IX(i, j)] = (x0[IX(i, j)] + a * neighborSum) / (1 + 4 * a);
       }
     }
     setBoundary(b, x);
   }
 }
 
-function diffuse(b, x, x0){
-    gaussSeidel(b, x, x0, dt);
+function diffuse(b, x, x0, diff){
+    gaussSeidel(b, x, x0, diff);
 }
 
 function advect(b, d, d0, u, v){
@@ -94,7 +94,15 @@ function project(u, v, p, div){
     setBoundary(0, div);
     setBoundary(0, p);
 
-    gaussSeidel(0, p, div, 1, 4);
+    for(let k = 0; k < iterations; k++){
+      for(let i = 1; i <= N; i++){
+        for(let j = 1; j <= N; j++){
+          let neighborSum = p[IX(i-1, j)] + p[IX(i+1, j)] + p[IX(i, j-1)] + p[IX(i, j+1)];
+          p[IX(i, j)] = (div[IX(i, j)] + neighborSum) / 4;
+        }
+      }
+      setBoundary(0, p);
+    }
     setBoundary(0, p);
 
     for(let j = 1; j <= N; j++){
@@ -107,18 +115,18 @@ function project(u, v, p, div){
     setBoundary(2, v);
 }
 
-function densityStep(x, x0, u, v){
+function densityStep(x, x0, u, v, diff){
     addSource(x, x0);
-    diffuse(0, x0, x);
+    diffuse(0, x0, x, diff);
     advect(0, x, x0, u, v);
 }
 
-function velocityStep(u, v, u0, v0){
+function velocityStep(u, v, u0, v0, visc){
     addSource(u, u0);
     addSource(v, v0);
 
-    diffuse(1, u0, u);
-    diffuse(2, v0, v);
+    diffuse(1, u0, u, visc);
+    diffuse(2, v0, v, visc);
     project(u0, v0, u, v);
 
     advect(1, u, u0, u0, v0);
@@ -127,12 +135,15 @@ function velocityStep(u, v, u0, v0){
 }
 
 class FluidSolver {
-    constructor(resolution, time, iter){
+    constructor(resolution, time, iter, viscosity, diffusion){
       N = resolution || 128;
       systemSize = (N + 2) * (N + 2);
       rowSize = N + 2;
       dt = time || 0.1;
       iterations = iter || 10;
+      this.viscosity = viscosity || 0.5;
+      this.diffusion = diffusion || 0.3;
+
 
       this.u = new Array(systemSize).fill(0);
       this.v = new Array(systemSize).fill(0);
@@ -164,8 +175,8 @@ class FluidSolver {
           this.u0[i] = this.v0[i] = this.d0[i] = 0.0;
 
         this.ui(new FluidBox(this.d0, this.u0, this.v0));
-        velocityStep(this.u, this.v, this.u0, this.v0, dt);
-        densityStep(this.d, this.d0, this.u, this.v, dt);
+        velocityStep(this.u, this.v, this.u0, this.v0, this.viscosity);
+        densityStep(this.d, this.d0, this.u, this.v, this.diffusion);
     }
 
     setUI(callback) {
