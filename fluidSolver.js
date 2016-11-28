@@ -1,17 +1,16 @@
 import FluidBox from './fluidBox';
 
-let systemSize = 130 * 130;
-let dt = 0.1;
-let rowSize = 130;
-let N = 128;
 let iterations = 10;
+let dt = 0.1;
+let N = 128;
+let systemSize = (N+2) * (N+2);
 
 function addSource(x, s){
     for(let i = 0; i < systemSize; i++) x[i] += dt * s[i];
 }
 
 function IX(i, j){
-  return i + rowSize * j;
+  return i + (N + 2) * j;
 }
 
 function setBoundary(b, x){
@@ -138,8 +137,7 @@ class FluidSolver {
     constructor(resolution, time, iter, viscosity, diffusion){
       N = resolution || 128;
       systemSize = (N + 2) * (N + 2);
-      rowSize = N + 2;
-      dt = time || 0.1;
+      dt = time || 0.08;
       iterations = iter || 10;
       this.viscosity = viscosity || 0.5;
       this.diffusion = diffusion || 0.3;
