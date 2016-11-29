@@ -1,6 +1,6 @@
 import FluidBox from './fluidBox';
 
-let iterations = 10;
+let iter = 10;
 let dt = 0.1;
 let N = 128;
 let systemSize = (N+2) * (N+2);
@@ -32,7 +32,7 @@ function setBoundary(b, x){
 function gaussSeidel(b, x, x0, diff){
   let a = dt * diff;
 
-  for(let k = 0; k < iterations; k++){
+  for(let k = 0; k < iter; k++){
     for(let i = 1; i <= N; i++){
       for(let j = 1; j <= N; j++){
         let neighborSum = x[IX(i-1, j)] + x[IX(i+1, j)] + x[IX(i, j-1)] + x[IX(i, j+1)];
@@ -92,7 +92,7 @@ function project(u, v, p, div){
     setBoundary(0, div);
     setBoundary(0, p);
 
-    for(let k = 0; k < iterations; k++){
+    for(let k = 0; k < iter; k++){
       for(let i = 1; i <= N; i++){
         for(let j = 1; j <= N; j++){
           let neighborSum = p[IX(i-1, j)] + p[IX(i+1, j)] + p[IX(i, j-1)] + p[IX(i, j+1)];
@@ -133,11 +133,11 @@ function velocityStep(u, v, u0, v0, visc){
 }
 
 class FluidSolver {
-    constructor(resolution, time, iter, viscosity, diffusion){
+    constructor(resolution, time, iterations, viscosity, diffusion){
       N = resolution || 128;
       systemSize = (N + 2) * (N + 2);
       dt = time || 0.08;
-      iterations = iter || 10;
+      iter = iterations || 10;
       this.viscosity = viscosity || 0.5;
       this.diffusion = diffusion || 0.3;
 
@@ -149,6 +149,26 @@ class FluidSolver {
       this.u0 = new Array(systemSize).fill(0);
       this.v0 = new Array(systemSize).fill(0);
       this.d0 = new Array(systemSize).fill(0);
+    }
+
+    setViscosity(viscosity){
+      this.viscosity = viscosity;
+    }
+
+    setDiffusion(diffusion){
+      this.diffusion = diffusion;
+    }
+
+    setTimeStep(timeStep){
+      dt = timeStep;
+    }
+
+    setResolution(resolution){
+      N = resolution;
+    }
+
+    setIterations(iterations){
+      iter = iterations;
     }
 
     width(){
