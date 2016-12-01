@@ -18,8 +18,11 @@ class FluidSimulator {
     this.solver.setUI(this.ui.bind(this));
 
     this.canvas = this.initCanvas();
+    this.initControlPanel();
     this.renderer = new FluidBoxRenderer(this.canvas, this.solver);
 
+    for(let i = 0; i < 20; i++)
+      this.update();
   }
 
   update(){
@@ -27,10 +30,39 @@ class FluidSimulator {
     this.renderer.render();
   }
 
+  initControlPanel(){
+    let $viscCtrl = $('#viscosity');
+    $viscCtrl.change( e => {
+      console.log(e.target.value);
+      this.solver.setViscosity(parseFloat(e.target.value));
+    });
+    let $diffusionCtrl = $('#diffusion');
+    $diffusionCtrl.change( e => {
+      this.solver.setDiffusion(parseFloat(e.target.value));
+    });
+    let $timeCtrl = $('#timeStep');
+    $timeCtrl.change( e => console.log($(e)) );
+    let $resolutionCtrl = $('#resolution');
+    $resolutionCtrl.change( e => {
+      console.log(parseInt(e.target.value));
+      this.simulating = false;
+      this.resolution = parseInt(e.target.value);
+      this.solver = new FluidSolver(this.resolution);
+
+      this.solver.setUI(this.ui.bind(this));
+      this.canvas = this.initCanvas();
+      this.renderer = new FluidBoxRenderer(this.canvas, this.solver);
+    });
+    let $iterationsCtrl = $('#iterations');
+    $iterationsCtrl.change( e => console.log($(e)) );
+
+  }
+
   initCanvas(){
-    let canvas = document.getElementById('fluidSimulator');
+    let canvas = $('#fluidSimulator').get(0);
+
     canvas.width = canvas.height = this.resolution;
-    window.ontouchend = window.onmouseup = this.mouseUpHandler.bind(this);
+    canvas.ontouchend = canvas.onmouseup = this.mouseUpHandler.bind(this);
     canvas.ontouchstart = canvas.onmousedown = this.mouseDownHandler.bind(this);
     canvas.ontouchmove = canvas.onmousemove = this.mouseMoveHandler.bind(this);
 

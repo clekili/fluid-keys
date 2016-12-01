@@ -13,7 +13,7 @@ li > input {
   width: 50%;
 }
 
-#fluidSimulator > canvas{
+#fluidSimulator {
   width: 80%;
   height: 60%;
   margin: 0 auto;

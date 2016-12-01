@@ -165,6 +165,7 @@ class FluidSolver {
 
     setResolution(resolution){
       N = resolution;
+      systemSize = (N+2) * (N+2);
     }
 
     setIterations(iterations){

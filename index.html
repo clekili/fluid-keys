@@ -9,31 +9,28 @@
   </head>
   <body>
     <h1>Navier-Stokes Fluid Simulator</h1>
-    <div id="fluidSimulator">
-      <canvas></canvas>
+    <canvas id='fluidSimulator'></canvas>
+    <ul id="controls">
+      <li> Viscosity
+        <input id="viscosity" type="range" min="0" max="50" step="0.5"/>
+      </li>
 
-      <ul id="controls">
-        <li> Viscosity
-          <input id="viscosity" type="range" min="0" max="10" step="0.5"/>
-        </li>
+      <li> Diffusion
+        <input id="diffusion" type="range" min="0" max="1" step="0.1"/>
+      </li>
 
-        <li> Diffusion
-          <input id="diffusion" type="range" min="0" max="1" step="0.1"/>
-        </li>
+      <li> Time step
+        <input id="dt" type="range" min="0" max="1" step='0.1'/>
+      </li>
 
-        <li> Time step
-          <input id="dt" type="range" min="0" max="1" step='0.1'/>
-        </li>
+      <li> Resolution
+        <input id="resolution" type="range" min="32" max="512" step='32' value='224'/>
+      </li>
 
-        <li> Resolution
-          <input id="resolution" type="range" min="32" max="512" step='0.1'/>
-        </li>
-
-        <li> Iterations
-          <input id="iterations" type="range" min="1" max="30" step='1'/>
-        </li>
-      </ul>
-    </div>
+      <li> Iterations
+        <input id="iterations" type="range" min="1" max="30" step='1'/>
+      </li>
+    </ul>
 
   </body>
 </html>

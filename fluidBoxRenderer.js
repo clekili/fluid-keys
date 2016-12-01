@@ -15,19 +15,20 @@ class FluidBoxRenderer {
   densify(){
     let ctx = this.canvas.getContext('2d');
     ctx.beginPath();
-    ctx.rect(0,0,200,200);
+    ctx.rect(0, 0, this.canvas.width, this.canvas.height);
     ctx.fillStyle = "black";
     ctx.fill();
     ctx.fillStyle = 'gray';
     ctx.textAlign = 'center';
-    ctx.font="15px Verdana";
-    ctx.fillText('Click and Drag!', 100, 100);
+
+    ctx.font = `${this.canvas.width/10}px Courier New`;
+    ctx.fillText('Click and Drag!', this.canvas.width/2, this.canvas.height/2);
 
     let width = this.solver.width();
     let height = this.solver.height();
     let data = ctx.getImageData(0, 0, width, height).data;
     for(let pixel = 0; pixel < data.length; pixel+=4){
-      if(data[pixel] !== 0){
+      if(data[pixel] > 10){
         let i = (pixel / 4) % width | 0;
         let j = (pixel / 4) / width | 0;
         this.solver.setDensity(i, j, 5);
