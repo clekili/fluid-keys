@@ -33,18 +33,16 @@ class FluidSimulator {
   initControlPanel(){
     let $viscCtrl = $('#viscosity');
     $viscCtrl.change( e => {
-      console.log(e.target.value);
       this.solver.setViscosity(parseFloat(e.target.value));
     });
+
     let $diffusionCtrl = $('#diffusion');
     $diffusionCtrl.change( e => {
       this.solver.setDiffusion(parseFloat(e.target.value));
     });
-    let $timeCtrl = $('#timeStep');
-    $timeCtrl.change( e => console.log($(e)) );
+
     let $resolutionCtrl = $('#resolution');
     $resolutionCtrl.change( e => {
-      console.log(parseInt(e.target.value));
       this.simulating = false;
       this.resolution = parseInt(e.target.value);
       this.solver = new FluidSolver(this.resolution);
@@ -53,8 +51,16 @@ class FluidSimulator {
       this.canvas = this.initCanvas();
       this.renderer = new FluidBoxRenderer(this.canvas, this.solver);
     });
+
     let $iterationsCtrl = $('#iterations');
-    $iterationsCtrl.change( e => console.log($(e)) );
+    $iterationsCtrl.change( e => {
+      this.solver.setIterations(parseInt(e.target.value));
+    });
+
+    let $densityCtrl = $('#density');
+    $densityCtrl.change( e => {
+      this.density = parseInt(e.target.value);
+    });
 
   }
 
