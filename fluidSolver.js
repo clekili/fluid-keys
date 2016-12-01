@@ -133,10 +133,10 @@ function velocityStep(u, v, u0, v0, visc){
 }
 
 class FluidSolver {
-    constructor(resolution, time, iterations, viscosity, diffusion){
+    constructor(resolution, iterations, viscosity, diffusion){
       N = resolution || 128;
       systemSize = (N + 2) * (N + 2);
-      dt = time || 0.08;
+      dt = 0.08;
       iter = iterations || 10;
       this.viscosity = viscosity || 0.5;
       this.diffusion = diffusion || 0.3;

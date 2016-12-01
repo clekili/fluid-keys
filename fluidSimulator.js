@@ -3,18 +3,18 @@ import FluidBoxRenderer from './fluidBoxRenderer.js';
 
 class FluidSimulator {
 
-  constructor(width, height, resolution, density){
+  constructor(width, height, resolution, density, diffusion, viscosity, iterations){
     this.width = width;
     this.height = height;
     this.resolution = resolution;
-    this.density = density || 50;
+    this.density = density || 90;
 
     this.startPos = [0, 0];
     this.currentPos = [0, 0];
     this.mouseIsDown = false;
     this.simulating = false;
 
-    this.solver = new FluidSolver(resolution);
+    this.solver = new FluidSolver(resolution, iterations, viscosity, diffusion);
     this.solver.setUI(this.ui.bind(this));
 
     this.canvas = this.initCanvas();

@@ -7,6 +7,18 @@ body {
 
 ul {
   list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content:center;
+}
+
+li > label {
+  width: 120px;
 }
 
 li > input {
