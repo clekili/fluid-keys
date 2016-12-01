@@ -21,7 +21,7 @@ class FluidBoxRenderer {
     ctx.fillStyle = 'gray';
     ctx.textAlign = 'center';
 
-    ctx.font = `${this.canvas.width/10}px Courier New`;
+    ctx.font = `${this.canvas.width/12}px Courier New`;
     ctx.fillText('Click and Drag!', this.canvas.width/2, this.canvas.height/2);
 
     let width = this.solver.width();

@@ -1,5 +1,7 @@
 body {
-  background: rgb(44,44,44);
+  background: #232526;
+  background: -webkit-linear-gradient(to bottom, #232526 , #414345);
+  background: linear-gradient(to bottom, #232526 , #414345);
   color: rgb(200,200,200);
   text-align: center;
   font-family: 'Raleway', sans-serif;
@@ -23,6 +25,21 @@ li > label {
 
 li > input {
   width: 50%;
+}
+
+a > img {
+  background-color: white;
+  border-radius: 50%;
+  margin: 1px;
+  padding: 1px;
+  opacity: 0.5;
+}
+
+a > img:hover{
+  transition: opacity .4s ease-in-out;
+   -moz-transition: opacity .4s ease-in-out;
+   -webkit-transition: opacity .4s ease-in-out;
+  opacity: 1;
 }
 
 #fluidSimulator {
