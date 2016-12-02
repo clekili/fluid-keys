@@ -5,4 +5,4 @@
 
 ## Overview
 
-Fluid Simulator implements a physics simulator that visualizes the behavior of fluids in an interactive enviroment.
+Fluid Simulator implements a physics simulator that visualizes the behavior of fluids in an interactive environment.
