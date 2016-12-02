@@ -5,7 +5,8 @@ module.exports = {
   entry: "./entry.js",
 
   output: {
-    path: path.join(__dirname, 'js'),
+    publicPath: '/fluid-sounds/dist/',
+    path: path.join(__dirname, 'dist'),
     filename: "bundle.js"
   },
   module: {
