@@ -2,10 +2,9 @@ const path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: "./entry.js",
+  entry: "./lib/entry.js",
 
   output: {
-    publicPath: '/fluid-sounds/dist/',
     path: path.join(__dirname, 'dist'),
     filename: "bundle.js"
   },
