@@ -7,7 +7,6 @@
 [hodge]: https://en.wikipedia.org/wiki/De_Rham_cohomology#Hodge_decomposition
 [poisson]: https://en.wikipedia.org/wiki/Poisson's_equation
 
-[screenshot]: https://res.cloudinary.com/ddqzltwv6/image/upload/v1480719330/fluid-simulator/ss2.png
 
 ## Overview
 
