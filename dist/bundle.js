@@ -161,9 +161,9 @@
 	      var canvas = $('#fluidSimulator').get(0);
 	
 	      canvas.width = canvas.height = this.resolution;
-	      canvas.ontouchend = canvas.onmouseup = this.mouseUpHandler.bind(this);
-	      canvas.ontouchstart = canvas.onmousedown = this.mouseDownHandler.bind(this);
-	      canvas.ontouchmove = canvas.onmousemove = this.mouseMoveHandler.bind(this);
+	      canvas.touchend = canvas.onmouseup = this.mouseUpHandler.bind(this);
+	      canvas.touchstart = canvas.onmousedown = this.mouseDownHandler.bind(this);
+	      canvas.touchmove = canvas.onmousemove = this.mouseMoveHandler.bind(this);
 	
 	      return canvas;
 	    }
