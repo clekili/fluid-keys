@@ -1,4 +1,4 @@
-# <img src='https://res.cloudinary.com/ddqzltwv6/image/upload/v1480718048/fluid-simulator/logo.png/' height='40px'> Fluid Simulator
+# <img src='https://res.cloudinary.com/ddqzltwv6/image/upload/v1480718048/fluid-simulator/logo.png' height='40px'/> Fluid Simulator
 
 
 [browse]: https://clekili.github.io/fluid-simulator/
